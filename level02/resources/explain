@@ -1,0 +1,20 @@
+### Level02
+
+Pour commencer, nous récupérons le fichier 'level02.pcap' situé dans '/home/user/level02' en utilisant la commande scp. Nous exécutons la commande suivante :
+
+	scp -P 4242 scp://level02@192.168.56.102:/level02.pcap level02.pcap
+
+Une fois le fichier téléchargé, nous ouvrons l'application Wireshark. Dans Wireshark, nous ouvrons le fichier 'level02.pcap'. Nous accédons à l'onglet 'Analyze', puis sélectionnons 'Follow' et enfin 'TCP Stream'. Cela regroupe les données de tous les paquets pour afficher l'intégralité des données envoyées.
+
+Nous repérons la ligne suivante :
+
+	Password: ft_wandr...NDRel.L0L
+
+Chaque point ('.') dans la ligne représente une lettre à supprimer (un point équivaut à la touche 'Delete'). 
+En supprimant les points, nous obtenons :
+
+	ft_waNDReLOL
+
+Enfin, nous nous connectons à 'flag02' et nous exécutons :
+
+	getflag

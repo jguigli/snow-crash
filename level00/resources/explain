@@ -1,0 +1,24 @@
+### Level00
+
+On va dans le dossier / pour avoir une vision global
+En suite, on execute la commande :
+
+	find . -group flag00
+
+pour tenter de trouver les fichiers avec une apparternance au groupe flag00.
+Une ligne nous interesse : 
+
+	...
+	/usr/sbin/john
+	...
+
+On fait un cat sur le fichier et on obtient en sortie :
+
+	cdiiddwpgswtgt
+
+La reconnaisance automatique du site Dcode nous a permis de voir que le mot de passe est crypte sous CESAR.
+En decryptant on obtient finalement le mot de passe pour flag00 : "nottoohardhere"
+
+On se connecte a flag00 et on execute :
+
+	getflag

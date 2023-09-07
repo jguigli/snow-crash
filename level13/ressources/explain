@@ -1,0 +1,27 @@
+### Level13
+
+Lorsqu'on execute le binaire ./level13, on obtient la sortie suivante :
+
+	UID 2013 started us but we we expect 4242
+
+Nous utilisons la commande 'objdump' pour désassembler le binaire './level13' et récupérons le code en assembleur :
+
+	objdump -d ./level13
+On s'apercoit que le programme compare le retour de la fonction getuid() et la valeur brute "4242".
+Notre but va etre de modifier la valeur du registre 'eax' qui contient notre reel UID.
+
+Nous utilisons 'gdb' pour déboguer './level13' :
+
+	gdb -q ./level13
+
+
+Nous définissons un point d'arrêt ('break') à l'endroit où se trouve la comparaison entre la valeur retournée par 'getuid' et la valeur brute '4242' dans la fonction 'main' :
+
+	break *main+14 
+
+
+Nous modifions la valeur du registre 'eax' pour qu'elle soit égale à '4242' en utilisant la commande :
+
+	set %eax=4242
+
+Nous continuons ('continue') l'exécution du programme jusqu'à la fin, et nous obtenons ainsi le flag.

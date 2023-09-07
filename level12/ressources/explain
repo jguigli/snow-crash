@@ -1,0 +1,28 @@
+### Level12
+
+1. Script perl level12.pl recevant deux parametres x et y.
+
+2. Utilisation de la commande curl comme pour le script du level04. 
+curl 'http://localhost:4646/level12.pl?x=`/*/GETFLAG`'
+
+Explication : Le script modifie la valeur de x en mettant les minuscules en majuscules et en supprimant les espaces apres. Impossible de seulement envoyer la commande "getflag" en parametre car elle sera mis en majuscules et sera jamais executee. Alors on cree un fichier dans /tmp nomme GETFLAG (en majuscules sinon le script le passera en maj si il est en minuscules et le trouvera pas pour l'executer). Apres cela, quand le script effectue la commande egrep sur $xx, il execute notre fichier
+/tmp/GETFLAG contenant "getflag > /tmp/sortie"
+
+3. On cat le fichier /tmp/sortie et voila le flag
+
+
+Nous avons un script Perl nommé 'level12.pl' qui prend deux paramètres, x et y.
+
+Nous utilisons la commande 'curl', similaire à ce que nous avons fait dans le script du niveau 04, pour exécuter le script 'level12.pl' avec le paramètre x. 
+Cependant, il y a une particularité. Le script modifie la valeur de x en mettant les lettres minuscules en majuscules et en supprimant les espaces. 
+Il est donc impossible d'envoyer simplement la commande "getflag" en tant que paramètre, car elle serait mise en majuscules et ne serait pas exécutée. Pour contourner cela, nous créons un fichier dans le répertoire /tmp nommé 'GETFLAG' (en majuscules, sinon le script le convertirait en majuscules et ne le trouverait pas pour l'exécuter) :
+
+	echo "getflag > /tmp/sortie" > /tmp/GETFLAG
+
+
+Ensuite, lorsque le script exécute la commande 'egrep' sur la variable $x : 
+
+	curl 'http://localhost:4646/level12.pl?x=`/*/GETFLAG`'
+
+il exécute en réalité notre fichier /tmp/GETFLAG contenant la commande "getflag > /tmp/sortie".
+Enfin, nous utilisons la commande 'cat' pour afficher le contenu du fichier /tmp/sortie et obtenir ainsi le drapeau.

@@ -1,0 +1,14 @@
+### Level07
+
+Lorsque j'execute le fichier binaire 'level07', la sortie affichée est "level07".
+En utilisant la commande :
+	ltrace ./level07
+	
+on voit que l'exécutable utilise la fonction 'getenv("LOGNAME")'.
+
+On modifie la variable d'environnement LOGNAME pour y placer la commande 'getflag' en l'exécutant. 
+Vous pouvez le faire avec la commande suivante :
+
+	export LOGNAME='getflag'
+
+Enfin, on execute le binaire 'level07' une fois que la variable LOGNAME a été modifiée. Cela nous permettra d'obtenir le drapeau recherché.

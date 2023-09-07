@@ -1,0 +1,10 @@
+#!/bin/bash
+
+touch /tmp/first
+echo "123" > first
+
+while true ; do
+	ln -sf /tmp/first /tmp/second
+	ln -sf ~/token /tmp/second
+
+done

@@ -1,0 +1,18 @@
+### Level06
+
+Dans le script 'level06.php', une vulnérabilité a été identifiée au niveau de la fonction 'preg_replace', qui utilise le modificateur '/e'.
+Le modificateur '/e' dans une expression régulière permet d'exécuter le code qui le précède.
+
+Pour exploiter cette vulnérabilité :
+
+- Créez un fichier nommé 'getflag' dans le répertoire /tmp. Ce fichier sera utilisé comme paramètre pour le script 'level06.php' :
+
+	touch getflag > /tmp
+
+- Dans le fichier getflag, on ajoute la séquence :
+
+	[x ${`getflag`}]
+	
+parce que le script évalue le contenu entre les crochets "[x ]".
+
+- Nous executons le script 'level06.php'. Il exécutera le code contenu dans le fichier 'getflag', ce qui nous permettra d'obtenir le drapeau recherché.

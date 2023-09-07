@@ -1,0 +1,22 @@
+### Level11
+
+Nous disposons d'un fichier 'level11.lua'.
+En effectuant un 'ls -la' sur le fichier, nous remarquons que nous avons les droits de 'flag11'. Cela signifie que nous pourrions essayer d'exécuter la commande 'getflag' via le script pour récupérer le token.
+Ce script écoute le port 5151 sur l'adresse locale (127.0.0.1). Le script attend de recevoir un mot de passe que nous devons envoyer. Il va crypter ce mot de passe avec la fonction 'shasum1' et comparer le hachage avec celui du mot de passe en clair présent dans le code.
+
+Pour résoudre ce niveau, nous allons exploiter une faille d'injection de commande.
+La ligne suspecte est celle-ci :
+
+	prog = io.popen("echo "..pass.." | sha1sum", "r")
+	
+Étant donné qu'il n'y a aucune vérification du mot de passe, nous pouvons envoyer la commande que nous souhaitons.
+Pour tester le programme, nous pouvons utiliser :
+
+	nc 127.0.0.1 5151
+
+Le script nous demande un mot de passe et affiche un message d'erreur si celui-ci n'est pas correct.
+Pour exploiter cette injection de commande, nous saisissons dans le champ du mot de passe : 
+
+	; getflag > /tmp/getflag
+	
+Cette commande exécute 'getflag' et place le résultat dans '/tmp/getflag'. Si nous faisons ensuite un 'cat' de ce fichier, le flag est present.

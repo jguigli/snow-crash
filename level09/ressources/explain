@@ -1,0 +1,25 @@
+### Level09
+
+Nous avons découvert un exécutable binaire nommé 'level09' qui permet de crypter un mot en décalant la valeur ASCII en fonction de sa position par rapport à la gauche.
+Dans un fichier nommé 'token', nous avons trouvé un mot crypté : "f4kmm6p|=..p.n..DB.Du{....". Cependant, il est difficile de retrouver la valeur "." qui est un caractère ASCII non imprimable.
+
+Pour résoudre ce problème, nous avons exécuté :
+
+	hexdump token
+	
+pour récupérer les valeurs hexadécimales du contenu du fichier.
+
+À partir de ces valeurs hexadécimales, nous avons créé un programme contenant l'algorithme de cryptage, mais cette fois-ci en sens inverse, afin de décrypter le mot. Nous avons utilisé les valeurs hexadécimales fournies comme entrée pour le programme :
+
+	gcc decrypteurLevel09.c
+	./a.out 66 34 6b 6d 6d 36 70 7c 3d 82 7f 70 82 6e 83 82 44 42 83 44 75 7b 7f 8c 89 0a
+
+
+Le programme a renvoyé la sortie suivante :
+
+	f3iji1ju5yuevaus41q1afiuq
+
+On se connecte a flag09 et on execute :
+
+	getflag
+

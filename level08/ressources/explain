@@ -1,0 +1,19 @@
+### Level08
+
+Nous avons deux fichiers : level08 et token.
+"level08" est un executable qui prend un fichier en parametre.
+On essaye donc en mettant token mais on a aucun droit sur le fichier
+
+Créons un lien symbolique vers le fichier 'token' dans le répertoire /tmp en utilisant les commandes suivantes :
+
+	cd /tmp
+	ln -s ~/token getflag
+
+Retournons ensuite au fichier 'level08' et exécutons-le en passant le lien symbolique comme argument :
+
+	./level08 /tmp/getflag
+
+Nous obtiendrons ainsi le mot de passe permettant d'accéder au profil 'flag08'.
+On se connecte a flag08 et on execute :
+
+	getflag
