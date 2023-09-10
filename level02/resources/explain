@@ -13,7 +13,7 @@ Nous repérons la ligne suivante :
 Chaque point ('.') dans la ligne représente une lettre à supprimer (un point équivaut à la touche 'Delete'). 
 En supprimant les points, nous obtenons :
 
-	ft_waNDReLOL
+	ft_waNDReL0L
 
 Enfin, nous nous connectons à 'flag02' et nous exécutons :
 
